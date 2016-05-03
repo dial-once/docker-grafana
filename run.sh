@@ -1,6 +1,6 @@
-#!/bin/sh -e
-
+#!/bin/sh
 set -m
+
 GRAFANA_BIN=/bin/grafana-server
 envtpl /etc/grafana/config-influxdb.js.tpl
 envtpl /usr/share/grafana/conf/defaults.ini.tpl
@@ -30,12 +30,13 @@ wait_for_start_of_grafana(){
     echo
 }
 
-exec "$GRAFANA_BIN" \
+exec ${GRAFANA_BIN} \
   --homepath=/usr/share/grafana             \
   cfg:default.paths.data="$GF_PATHS_DATA"   \
   cfg:default.paths.logs="$GF_PATHS_LOGS"   \
   cfg:default.paths.plugins="$GF_PATHS_PLUGINS" \
   web &
+
 ps auwx | grep -q $GRAFANA_BIN || exit 1
 wait_for_start_of_grafana
 
