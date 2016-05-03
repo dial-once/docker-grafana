@@ -7,7 +7,7 @@ This project builds a Docker image with the latest master build of Grafana.
 Start your container binding the external port `3000`.
 
 ```
-docker run -d --name=grafana -p 3000:3000 appcelerator/grafana
+docker run -d --name=grafana -p 3000:3000 dialonce/grafana:latest
 ```
 
 Try it out, default admin user is admin/changeme.
@@ -26,7 +26,7 @@ docker run \
   -e "INFLUXDB_HOST=influxdb" \
   -e "INFLUXDB_USER=grafana" \
   -e "INFLUXDB_PASS=changeme" \
-  appcelerator/grafana
+  dialonce/grafana:latest
 ```
 
 ## Grafana container with persistent storage (recommended)
@@ -41,37 +41,7 @@ docker run \
   -p 3000:3000 \
   --name=grafana \
   --volumes-from grafana-storage \
-  appcelerator/grafana
+  dialonce/grafana:latest
 ```
 
-## Running specific version of Grafana
-
-```
-# specify right tag, e.g. 2.6.0 - see Docker Hub for available tags
-docker run \
-  -d \
-  -p 3000:3000 \
-  --name grafana \
-  appcelerator/grafana:2.6.0
-```
-
-## Official Grafana with unofficial plugins (community project):
-
-Unofficial plugins/datasources: Zabbix, DalmatinerDB, Ambari, Atsd, Bosun,
-Cloudera Manager, Druid, Chnocchi, PRTG, ...
-
-```
-# create /var/lib/grafana as persistent volume storage
-docker run -d -v /var/lib/grafana --name grafana-xxl-storage busybox:latest
-
-# start grafana-xxl
-docker run \
-  -d \
-  -p 3000:3000 \
-  --name grafana-xxl \
-  --volumes-from grafana-xxl-storage \
-  monitoringartist/grafana-xxl
-```
-
-Visit [Grafana XXL project](https://github.com/monitoringartist/grafana-xxl)
-for more details.
+Thanks to appcelerator (https://github.com/appcelerator/docker-grafana) for the migration to Alpine.
