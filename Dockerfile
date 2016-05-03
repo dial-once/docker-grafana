@@ -37,6 +37,7 @@ ENV GRAFANA_PASS changeme
 
 COPY ./grafana.ini /usr/share/grafana/conf/defaults.ini.tpl
 COPY ./config-influxdb.js /etc/grafana/config-influxdb.js.tpl
+COPY ./config-elasticsearch.js /etc/grafana/config-elasticsearch.js.tpl
 COPY ./run.sh /run.sh
 
 CMD ["/run.sh"]

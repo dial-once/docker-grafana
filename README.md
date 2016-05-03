@@ -17,6 +17,8 @@ Try it out, default admin user is admin/changeme.
 All options defined in conf/grafana.ini can be overriden using environment
 variables, for example:
 
+### InfluxDB
+
 ```
 docker run \
   -d \
@@ -28,6 +30,19 @@ docker run \
   -e "INFLUXDB_PASS=changeme" \
   dialonce/grafana:latest
 ```
+
+### ElasticSearch
+
+```
+docker run \
+  -d \
+  -p 3000:3000 \
+  --name=grafana \
+  -e "GRAFANA_PASS=changeme" \
+  -e "ELASTIC_HOST=influxdb" \
+  dialonce/grafana:latest
+```
+
 
 ## Grafana container with persistent storage (recommended)
 
