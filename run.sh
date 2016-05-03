@@ -46,4 +46,4 @@ if [ ! -f /.ds_is_configured ]; then
 fi
 
 echo "bringing back init process in foreground"
-fg
+wait
